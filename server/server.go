@@ -10,16 +10,13 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	_, err := httputil.DumpRequest(r, true)
+	dump, err := httputil.DumpRequest(r, true)
     if err != nil {
-        log.Println("error!")
         http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
         return
-    } else {
-        log.Println("ok!")
     }
 
-    // fmt.Println(string(dump))
+    fmt.Println(string(dump))
     fmt.Fprintf(w, "<html><body>Hello</body></html>\n")
 }
 
